@@ -1,0 +1,6 @@
+*.cs	text eol=crlf
+*.md	text eol=crlf
+*.sln	text eol=crlf
+*.csproj	text eol=crlf
+*.json	text eol=crlf
+*.sql	text eol=crlf
