@@ -1,13 +1,16 @@
 using Microsoft.AspNet.OData.Builder;
 using Microsoft.AspNet.OData.Extensions;
+using Microsoft.AspNet.OData.Formatter;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Net.Http.Headers;
 using Microsoft.OData.Edm;
 using Newtonsoft.Json;
+using System.Linq;
 using Yuya.Net.ODataExamples.ASPNetCore.Simple.Web.Models;
 
 namespace Yuya.Net.ODataExamples.ASPNetCore.Simple.Web
@@ -29,6 +32,15 @@ namespace Yuya.Net.ODataExamples.ASPNetCore.Simple.Web
       services.AddMvcCore(options =>
       {
         options.EnableEndpointRouting = false; // TODO: Remove when OData does not causes exceptions anymore
+
+        foreach (var outputFormatter in options.OutputFormatters.OfType<ODataOutputFormatter>().Where(_ => _.SupportedMediaTypes.Count == 0))
+        {
+          outputFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("application/prs.odatatestxx-odata"));
+        }
+        foreach (var inputFormatter in options.InputFormatters.OfType<ODataInputFormatter>().Where(_ => _.SupportedMediaTypes.Count == 0))
+        {
+          inputFormatter.SupportedMediaTypes.Add(new MediaTypeHeaderValue("application/prs.odatatestxx-odata"));
+        }
       })
         .AddAuthorization()
         .AddDataAnnotations()
@@ -39,7 +51,6 @@ namespace Yuya.Net.ODataExamples.ASPNetCore.Simple.Web
       services.AddOData();
 
       //services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
