@@ -33,36 +33,33 @@ namespace Yuya.Net.ODataExamples.ASPNetCore.Simple.Web.Controllers
 
 
 
-    [ODataRoute("({key})/{property}")]
+    [ODataRoute("({key})/CategoryID")]
     [EnableQuery]
-    public SingleResult<string> GetCategoryName([FromODataUri] int key, [FromODataUri]string property)
+    public SingleResult<int> GetCategoryID([FromODataUri] int key)
     {
-      return SingleResult.Create(_db.Categories.Where(c => c.CategoryID == key).Select(x=>x.CategoryName));
+      return SingleResult.Create(_db.Categories.Where(c => c.CategoryID == key).Select(x => x.CategoryID));
     }
 
-    //[ODataRoute("({key})/{propertyName}")]
-    //[EnableQuery]
-    //public IActionResult GetProperties([FromODataUri] int key, [FromODataUri]string propertyName)
-    //{
-    //  if (string.IsNullOrWhiteSpace(propertyName))
-    //    return Ok(SingleResult.Create(_db.Categories.Where(c => c.CategoryID == key)));
+    [ODataRoute("({key})/CategoryName")]
+    [EnableQuery]
+    public SingleResult<string> GetCategoryName([FromODataUri] int key)
+    {
+      return SingleResult.Create(_db.Categories.Where(c => c.CategoryID == key).Select(x => x.CategoryName));
+    }
 
-    //  var prop =
-    //  typeof(Category)
-    //    .GetProperties(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance)
-    //    .Where(x => string.Compare(x.Name, propertyName, StringComparison.InvariantCultureIgnoreCase) == 0)
-    //    .FirstOrDefault();
-    //  if (prop == null)
-    //    return NotFound();
+    [ODataRoute("({key})/Description")]
+    [EnableQuery]
+    public SingleResult<string> GetDescription([FromODataUri] int key)
+    {
+      return SingleResult.Create(_db.Categories.Where(c => c.CategoryID == key).Select(x => x.Description));
+    }
 
-    //  var row = _db.Categories.Where(x => x.CategoryID == key);
-    //  if (row == null)
-    //    return NotFound();
-
-    //  var val = prop.GetGetMethod().Invoke(row, null);
-
-    //  return Ok(val);
-    //}
+    [ODataRoute("({key})/Products")]
+    [EnableQuery]
+    public IEnumerable<Product> GetProducts([FromODataUri] int key)
+    {
+      return _db.Products.Where(c => c.CategoryID == key);
+    }
 
   }
 }

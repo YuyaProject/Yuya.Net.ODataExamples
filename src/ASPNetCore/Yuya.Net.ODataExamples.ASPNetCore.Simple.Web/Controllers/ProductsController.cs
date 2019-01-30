@@ -7,6 +7,7 @@ using Yuya.Net.ODataExamples.ASPNetCore.Simple.Web.Models;
 
 namespace Yuya.Net.ODataExamples.ASPNetCore.Simple.Web.Controllers
 {
+  [ODataRoutePrefix("Products")]
   public class ProductsController : ODataController
   {
     private NorthwindDbContext _db;
@@ -16,12 +17,14 @@ namespace Yuya.Net.ODataExamples.ASPNetCore.Simple.Web.Controllers
       _db = context;
     }
 
+    [ODataRoute]
     [EnableQuery]
     public IEnumerable<Product> Get()
     {
       return _db.Products;
     }
 
+    [ODataRoute("({key})")]
     [EnableQuery]
     public SingleResult<Product> Get(int key)
     {

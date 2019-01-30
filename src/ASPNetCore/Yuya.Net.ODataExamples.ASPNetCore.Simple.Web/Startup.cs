@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Net.Http.Headers;
 using Microsoft.OData.Edm;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using System.Linq;
 using Yuya.Net.ODataExamples.ASPNetCore.Simple.Web.Models;
 
@@ -44,7 +45,13 @@ namespace Yuya.Net.ODataExamples.ASPNetCore.Simple.Web
       })
         .AddAuthorization()
         .AddDataAnnotations()
-        .AddJsonFormatters(options => options.ReferenceLoopHandling = ReferenceLoopHandling.Ignore)
+        .AddJsonOptions(options => options.SerializerSettings.ContractResolver = new DefaultContractResolver
+        {
+          NamingStrategy = new CamelCaseNamingStrategy()
+        })
+        .AddJsonFormatters(options => {
+          options.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+        })
         .AddCors()
         .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
@@ -71,6 +78,7 @@ namespace Yuya.Net.ODataExamples.ASPNetCore.Simple.Web
     private static IEdmModel GetEdmModel()
     {
       ODataConventionModelBuilder builder = new ODataConventionModelBuilder();
+      builder.EnableLowerCamelCase();
       builder.EntitySet<Category>("Categories");
       builder.EntitySet<Customer>("Customers");
       builder.EntitySet<Employee>("Employees");
