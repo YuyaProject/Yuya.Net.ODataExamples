@@ -18,7 +18,7 @@ namespace Yuya.Net.ODataExamples.ASPNetCore.Simple.Web.Controllers
     }
 
     [ODataRoute]
-    [EnableQuery]
+    [EnableQuery] 
     public IEnumerable<Employee> Get()
     {
       return _db.Employees;
