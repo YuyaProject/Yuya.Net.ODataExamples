@@ -44,6 +44,7 @@ namespace ODataExample.Controllers.OData
 			return _db.EmployeeTerritories.Where(x => x.EmployeeId == key);
 		}
 
+		[EnableQuery]
 		public SingleResult<Employee> GetReportsTo([FromODataUri] int key)
 		{
 			return SingleResult.Create(_db.Employees.Where(e => e.Id == key).Select(e => e.ReportsTo));

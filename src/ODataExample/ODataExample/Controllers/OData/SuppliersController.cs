@@ -23,6 +23,7 @@ namespace ODataExample.Controllers.OData
 			return _db.Suppliers;
 		}
 
+		[EnableQuery]
 		public virtual SingleResult<Supplier> Get([FromODataUri] int key)
 		{
 			return SingleResult.Create(_db.Suppliers.Where(e => e.Id == key));

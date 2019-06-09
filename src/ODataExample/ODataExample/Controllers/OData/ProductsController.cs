@@ -34,11 +34,13 @@ namespace ODataExample.Controllers.OData
 			return _db.OrderDetails.Where(x => x.ProductId == key);
 		}
 
+		[EnableQuery]
 		public SingleResult<Supplier> GetSupplier([FromODataUri] int key)
 		{
 			return SingleResult.Create(_db.Products.Where(e => e.Id == key).Select(e => e.Supplier));
 		}
 
+		[EnableQuery]
 		public SingleResult<Category> GetCategory([FromODataUri] int key)
 		{
 			return SingleResult.Create(_db.Products.Where(e => e.Id == key).Select(e => e.Category));

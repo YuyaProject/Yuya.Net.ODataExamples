@@ -34,16 +34,19 @@ namespace ODataExample.Controllers.OData
 			return _db.OrderDetails.Where(x => x.OrderId == key);
 		}
 
+		[EnableQuery]
 		public SingleResult<Shipper> GetShipVia([FromODataUri] int key)
 		{
 			return SingleResult.Create(_db.Orders.Where(e => e.Id == key).Select(e => e.ShipVia));
 		}
 
+		[EnableQuery]
 		public SingleResult<Customer> GetCustomer([FromODataUri] int key)
 		{
 			return SingleResult.Create(_db.Orders.Where(e => e.Id == key).Select(e => e.Customer));
 		}
 
+		[EnableQuery]
 		public SingleResult<Employee> GetEmployee([FromODataUri] int key)
 		{
 			return SingleResult.Create(_db.Orders.Where(e => e.Id == key).Select(e => e.Employee));
