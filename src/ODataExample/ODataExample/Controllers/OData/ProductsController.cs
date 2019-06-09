@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNet.OData;
-using Microsoft.AspNet.OData.Query;
 using Microsoft.AspNet.OData.Routing;
 using Microsoft.EntityFrameworkCore;
 using NorthwindEFCore;
@@ -19,15 +18,30 @@ namespace ODataExample.Controllers.OData
 			_db.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
 		}
 
-		public virtual IQueryable<Product> Get(ODataQueryOptions<Product> options)
+		public virtual IQueryable<Product> Get()
 		{
 			return _db.Products;
 		}
 
 		[EnableQuery]
-		public virtual SingleResult<Product> Get([FromODataUri] int key, ODataQueryOptions<Product> options)
+		public virtual SingleResult<Product> Get([FromODataUri] int key)
 		{
 			return SingleResult.Create(_db.Products.Where(e => e.Id == key));
+		}
+
+		public IQueryable<OrderDetail> GetOrderDetails([FromODataUri] int key)
+		{
+			return _db.OrderDetails.Where(x => x.ProductId == key);
+		}
+
+		public SingleResult<Supplier> GetSupplier([FromODataUri] int key)
+		{
+			return SingleResult.Create(_db.Products.Where(e => e.Id == key).Select(e => e.Supplier));
+		}
+
+		public SingleResult<Category> GetCategory([FromODataUri] int key)
+		{
+			return SingleResult.Create(_db.Products.Where(e => e.Id == key).Select(e => e.Category));
 		}
 	}
 }

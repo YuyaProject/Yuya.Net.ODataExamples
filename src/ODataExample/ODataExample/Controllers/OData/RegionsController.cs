@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNet.OData;
-using Microsoft.AspNet.OData.Query;
 using Microsoft.AspNet.OData.Routing;
 using Microsoft.EntityFrameworkCore;
 using NorthwindEFCore;
@@ -19,15 +18,20 @@ namespace ODataExample.Controllers.OData
 			_db.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
 		}
 
-		public virtual IQueryable<Region> Get(ODataQueryOptions<Region> options)
+		public virtual IQueryable<Region> Get()
 		{
 			return _db.Regions;
 		}
 
 		[EnableQuery]
-		public virtual SingleResult<Region> Get([FromODataUri] int key, ODataQueryOptions<Region> options)
+		public virtual SingleResult<Region> Get([FromODataUri] int key)
 		{
 			return SingleResult.Create(_db.Regions.Where(e => e.Id == key));
+		}
+
+		public IQueryable<Territory> GetTerritories([FromODataUri] int key)
+		{
+			return _db.Territories.Where(x => x.RegionId == key);
 		}
 	}
 }

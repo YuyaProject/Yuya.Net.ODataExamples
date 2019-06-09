@@ -28,5 +28,10 @@ namespace ODataExample.Controllers.OData
 		{
 			return SingleResult.Create(_db.Categories.Where(e => e.Id == key));
 		}
+
+		public IQueryable<Product> GetProducts([FromODataUri] int key)
+		{
+			return _db.Products.Where(x => x.CategoryId == key);
+		}
 	}
 }

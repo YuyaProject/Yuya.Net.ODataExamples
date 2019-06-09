@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNet.OData;
-using Microsoft.AspNet.OData.Query;
 using Microsoft.AspNet.OData.Routing;
 using Microsoft.EntityFrameworkCore;
 using NorthwindEFCore;
@@ -19,15 +18,20 @@ namespace ODataExample.Controllers.OData
 			_db.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
 		}
 
-		public virtual IQueryable<Shipper> Get(ODataQueryOptions<Shipper> options)
+		public virtual IQueryable<Shipper> Get()
 		{
 			return _db.Shippers;
 		}
 
 		[EnableQuery]
-		public virtual SingleResult<Shipper> Get([FromODataUri] int key, ODataQueryOptions<Shipper> options)
+		public virtual SingleResult<Shipper> Get([FromODataUri] int key)
 		{
 			return SingleResult.Create(_db.Shippers.Where(e => e.Id == key));
+		}
+
+		public IQueryable<Order> GetOrders([FromODataUri] int key)
+		{
+			return _db.Orders.Where(x => x.ShipViaId == key);
 		}
 	}
 }
