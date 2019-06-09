@@ -20,7 +20,7 @@
     "ODataExample": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "api/values",
+      "launchUrl": "odata/categories",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       },
