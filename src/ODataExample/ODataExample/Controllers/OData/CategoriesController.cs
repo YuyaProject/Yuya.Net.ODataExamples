@@ -18,6 +18,7 @@ namespace ODataExample.Controllers.OData
 			_db.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
 		}
 
+		[EnableQuery]
 		public IQueryable<Category> Get()
 		{
 			return _db.Categories;
@@ -29,6 +30,7 @@ namespace ODataExample.Controllers.OData
 			return SingleResult.Create(_db.Categories.Where(e => e.Id == key));
 		}
 
+		[EnableQuery]
 		public IQueryable<Product> GetProducts([FromODataUri] int key)
 		{
 			return _db.Products.Where(x => x.CategoryId == key);

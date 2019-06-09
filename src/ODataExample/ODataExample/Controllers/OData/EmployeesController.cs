@@ -18,6 +18,7 @@ namespace ODataExample.Controllers.OData
 			_db.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
 		}
 
+		[EnableQuery]
 		public virtual IQueryable<Employee> GetEmployees()
 		{
 			return _db.Employees;
@@ -29,16 +30,19 @@ namespace ODataExample.Controllers.OData
 			return SingleResult.Create(_db.Employees.Where(e => e.Id == key));
 		}
 
+		[EnableQuery]
 		public IQueryable<Order> GetOrders([FromODataUri] int key)
 		{
 			return _db.Orders.Where(x => x.EmployeeId == key);
 		}
 
+		[EnableQuery]
 		public IQueryable<Employee> GetEmployees([FromODataUri] int key)
 		{
 			return _db.Employees.Where(x => x.ReportsToId == key);
 		}
 
+		[EnableQuery]
 		public IQueryable<EmployeeTerritory> GetEmployeeTerritories([FromODataUri] int key)
 		{
 			return _db.EmployeeTerritories.Where(x => x.EmployeeId == key);

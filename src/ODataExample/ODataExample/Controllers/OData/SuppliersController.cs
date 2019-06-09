@@ -18,6 +18,7 @@ namespace ODataExample.Controllers.OData
 			_db.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
 		}
 
+		[EnableQuery]
 		public virtual IQueryable<Supplier> Get()
 		{
 			return _db.Suppliers;
@@ -29,6 +30,7 @@ namespace ODataExample.Controllers.OData
 			return SingleResult.Create(_db.Suppliers.Where(e => e.Id == key));
 		}
 
+		[EnableQuery]
 		public IQueryable<Product> GetProducts([FromODataUri] int key)
 		{
 			return _db.Products.Where(x => x.SupplierId == key);

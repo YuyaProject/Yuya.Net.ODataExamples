@@ -18,6 +18,7 @@ namespace ODataExample.Controllers.OData
 			_db.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
 		}
 
+		[EnableQuery]
 		public virtual IQueryable<Territory> Get()
 		{
 			return _db.Territories;
@@ -29,6 +30,7 @@ namespace ODataExample.Controllers.OData
 			return SingleResult.Create(_db.Territories.Where(e => e.Id == key));
 		}
 
+		[EnableQuery]
 		public IQueryable<EmployeeTerritory> GetEmployeeTerritories([FromODataUri] string key)
 		{
 			return _db.EmployeeTerritories.Where(x => x.TerritoryId == key);
