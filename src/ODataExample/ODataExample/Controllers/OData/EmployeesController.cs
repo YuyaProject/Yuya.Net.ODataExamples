@@ -7,26 +7,26 @@ using System.Linq;
 
 namespace ODataExample.Controllers.OData
 {
-	[ODataRoutePrefix("Categories")]
-	public class CategoriesController : ODataController
+	[ODataRoutePrefix("Employees")]
+	public class EmployeesController : ODataController
 	{
 		private readonly NorthwindDbContext _db;
 
-		public CategoriesController(NorthwindDbContext db)
+		public EmployeesController(NorthwindDbContext db)
 		{
 			_db = db;
 			_db.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
 		}
 
-		public IQueryable<Category> Get()
+		public virtual IQueryable<Employee> Get()
 		{
-			return _db.Categories;
+			return _db.Employees;
 		}
 
 		[EnableQuery]
-		public SingleResult<Category> Get([FromODataUri] int key)
+		public virtual SingleResult<Employee> Get([FromODataUri] int key)
 		{
-			return SingleResult.Create(_db.Categories.Where(e => e.Id == key));
+			return SingleResult.Create(_db.Employees.Where(e => e.Id == key));
 		}
 	}
 }
