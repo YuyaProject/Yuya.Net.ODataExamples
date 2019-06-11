@@ -1,0 +1,17 @@
+﻿
+@{
+	ViewData["Title"] = "Supplier Entity";
+
+
+	var pageDatas = new List<(string, string, ApiResponseType)>()
+{
+	("All Suppliers","~/odata/suppliers" , ApiResponseType.Json),
+	("Supplier - 1","~/odata/suppliers(1)", ApiResponseType.Json),
+};
+
+}
+
+@foreach (var item in pageDatas)
+{
+	<partial name="_ShowLineItem" model="item" />
+}

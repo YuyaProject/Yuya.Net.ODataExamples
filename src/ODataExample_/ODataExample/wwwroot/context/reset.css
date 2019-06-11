@@ -1,0 +1,64 @@
+﻿.json-viewer {
+  padding: 0;
+  margin: 0;
+  font-family: 'Trebuchet MS', Arial, sans-serif;
+  font-size: 14px;
+  color: #000;
+  height: 100%;
+  min-height: 100%;
+  background: #FFF;
+  line-height: 1;
+  overflow-y: scroll;
+  /*html {
+        height: 100%;
+    }
+
+    body {
+        padding: 0;
+        margin: 0;
+        font-family: 'Trebuchet MS', Arial, sans-serif;
+        font-size: 14px;
+        color: #000;
+        height: 100%;
+        min-height: 100%;
+        background: #FFF;
+        line-height: 1;
+        overflow-y: scroll;
+    }*/ }
+  .json-viewer html, .json-viewer body, .json-viewer div, .json-viewer span, .json-viewer applet, .json-viewer object,
+  .json-viewer h1, .json-viewer h2, .json-viewer h3, .json-viewer h4, .json-viewer h5, .json-viewer h6, .json-viewer p, .json-viewer a, .json-viewer em, .json-viewer img,
+  .json-viewer strong, .json-viewer ol, .json-viewer ul, .json-viewer li, .json-viewer dl, .json-viewer dd, .json-viewer dt,
+  .json-viewer form, .json-viewer label, .json-viewer input,
+  .json-viewer article, .json-viewer aside, .json-viewer canvas, .json-viewer details,
+  .json-viewer embed, .json-viewer figure, .json-viewer figcaption, .json-viewer footer,
+  .json-viewer header, .json-viewer hgroup, .json-viewer menu, .json-viewer nav, .json-viewer output,
+  .json-viewer ruby, .json-viewer section, .json-viewer summary, .json-viewer time, .json-viewer mark,
+  .json-viewer audio, .json-viewer video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    outline: 0;
+    font-style: inherit;
+    font-size: 100%;
+    font-family: inherit;
+    vertical-align: baseline;
+    background: transparent; }
+  .json-viewer :focus {
+    outline: 0; }
+  .json-viewer ul, .json-viewer ol {
+    list-style: none; }
+  .json-viewer img {
+    border: 0; }
+  .json-viewer a:link, .json-viewer a:visited {
+    outline: none;
+    text-decoration: none;
+    color: #000; }
+  .json-viewer .clear {
+    clear: both; }
+  .json-viewer .clearfix:after {
+    content: ".";
+    display: block;
+    clear: both;
+    visibility: hidden;
+    line-height: 0;
+    height: 0; }

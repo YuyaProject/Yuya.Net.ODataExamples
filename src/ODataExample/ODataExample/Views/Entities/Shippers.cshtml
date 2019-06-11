@@ -1,0 +1,17 @@
+﻿
+@{
+	ViewData["Title"] = "Shipper Entity";
+
+
+	var pageDatas = new List<(string, string, ApiResponseType)>()
+{
+	("All Shippers","~/odata/shippers" , ApiResponseType.Json),
+	("Shipper - 1","~/odata/shippers(1)", ApiResponseType.Json),
+};
+
+}
+
+@foreach (var item in pageDatas)
+{
+	<partial name="_ShowLineItem" model="item" />
+}

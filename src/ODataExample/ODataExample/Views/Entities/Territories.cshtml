@@ -1,0 +1,17 @@
+﻿
+@{
+	ViewData["Title"] = "Territory Entity";
+
+
+	var pageDatas = new List<(string, string, ApiResponseType)>()
+{
+	("All Territories","~/odata/territories" , ApiResponseType.Json),
+	("Territory - 1","~/odata/territories(1)", ApiResponseType.Json),
+};
+
+}
+
+@foreach (var item in pageDatas)
+{
+	<partial name="_ShowLineItem" model="item" />
+}

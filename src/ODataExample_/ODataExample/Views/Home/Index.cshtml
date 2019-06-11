@@ -1,0 +1,57 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_layout.cshtml";
+
+    var pageDatas = new List<KeyValuePair<string, string>>()
+{
+        new KeyValuePair<string, string>("All Categories","odata/categories"),
+        new KeyValuePair<string, string>("Category - 1","odata/categories(1)"),
+    };
+    
+}
+
+@foreach (var item in pageDatas)
+{
+    <div>
+        <h2>@item.Key</h2>
+        <p>
+            <a href="@item.Value" target="_blank" class="btn btn-primary coll">
+                @item.Value
+            </a>
+        </p>
+    </div>
+
+}
+
+
+@section Scripts {
+    <script>
+        (function ($) {
+            $(function () {
+                $('a.coll').click(function (event) {
+                    var $t = $(this);
+                    if ($t.next().length == 0) {
+                        var h = $t.attr('href');
+                        $t.after($('<div class="card">' +
+                            '  <div class="card-body">' +
+                            '    <h5 class="card-title"><a href="' + h + '" target="_blank">' + h + '</a></h5>' +
+                            '    <p class="card-text json-viewer"></p>' +
+                            '  </div>' +
+                            '</div>'));
+
+                        $.getJSON(h, function (d) {
+                            //var w = $('.card-text', $t.next()).get(0);
+                            //jsonTree.create(d, w);
+                            $('.card-text', $t.next()).jsonView(d);
+                        });
+                    }
+                    else {
+                        $t.next().remove();
+                    }
+                    event.preventDefault();
+                    return false;
+                });
+            });
+        })(jQuery);
+    </script>
+}

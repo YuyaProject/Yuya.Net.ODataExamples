@@ -1,0 +1,17 @@
+﻿
+@{
+	ViewData["Title"] = "Region Entity";
+
+
+	var pageDatas = new List<(string, string, ApiResponseType)>()
+{
+	("All Regions","~/odata/regions" , ApiResponseType.Json),
+	("Region - 1","~/odata/regions(1)", ApiResponseType.Json),
+};
+
+}
+
+@foreach (var item in pageDatas)
+{
+	<partial name="_ShowLineItem" model="item" />
+}

@@ -1,0 +1,17 @@
+﻿
+@{
+	ViewData["Title"] = "Category Entity";
+
+
+	var pageDatas = new List<(string, string, ApiResponseType)>()
+{
+	("All Categories","~/odata/categories" , ApiResponseType.Json),
+	("Category - 1","~/odata/categories(1)", ApiResponseType.Json),
+};
+
+}
+
+@foreach (var item in pageDatas)
+{
+	<partial name="_ShowLineItem" model="item" />
+}

@@ -1,0 +1,35 @@
+﻿<header>
+	<nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+		<div class="container">
+			<a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">ODataExample</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+							aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
+				<span class="navbar-text">
+					@ViewData["Title"]
+				</span>
+				<ul class="navbar-nav flex-grow-1 mr-auto">
+					<li class="nav-item dropdown">
+						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+							Entities
+						</a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" asp-area="" asp-controller="Entities" asp-action="Orders">Orders</a>
+							<div class="dropdown-divider"></div>
+							<a class="dropdown-item" asp-area="" asp-controller="Entities" asp-action="Categories">Categories</a>
+							<a class="dropdown-item" asp-area="" asp-controller="Entities" asp-action="Customers">Customers</a>
+							<a class="dropdown-item" asp-area="" asp-controller="Entities" asp-action="Employees">Employees</a>
+							<a class="dropdown-item" asp-area="" asp-controller="Entities" asp-action="Products">Products</a>
+							<a class="dropdown-item" asp-area="" asp-controller="Entities" asp-action="Regions">Regions</a>
+							<a class="dropdown-item" asp-area="" asp-controller="Entities" asp-action="Shippers">Shippers</a>
+							<a class="dropdown-item" asp-area="" asp-controller="Entities" asp-action="Suppliers">Suppliers</a>
+							<a class="dropdown-item" asp-area="" asp-controller="Entities" asp-action="Territories">Territories</a>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+</header>
