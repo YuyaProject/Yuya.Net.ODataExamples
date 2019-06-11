@@ -1,0 +1,28 @@
+﻿@model (string, string, ApiResponseType)
+@*
+	For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+<div>
+	<h2>@Model.Item1</h2>
+	<p>
+		@switch (Model.Item3)
+		{
+			case ApiResponseType.Json:
+				<a href = "@Url.Content(Model.Item2)" target = "_blank" class="btn btn-primary jw">
+				@Url.Content(Model.Item2)
+				</a>
+				break;
+			case ApiResponseType.Xml:
+				<a href="@Url.Content(Model.Item2)" target="_blank" class="btn btn-primary xw">
+					@Url.Content(Model.Item2)
+				</a>
+				break;
+			case ApiResponseType.Text:
+				<a href="@Url.Content(Model.Item2)" target="_blank" class="btn btn-primary tw">
+					@Url.Content(Model.Item2)
+				</a>
+				break;
+		}
+	</p>
+</div>

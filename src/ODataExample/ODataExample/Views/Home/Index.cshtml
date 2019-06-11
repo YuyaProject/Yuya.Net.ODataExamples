@@ -1,0 +1,17 @@
+﻿@{
+	ViewData["Title"] = "Home Page";
+
+
+	var pageDatas = new List<(string, string, ApiResponseType)>()
+		{
+			("Metadata","~/odata/$metadata", ApiResponseType.Xml),
+			("All Categories","~/odata/categories" , ApiResponseType.Json),
+			("Category - 1","~/odata/categories(1)", ApiResponseType.Json),
+		};
+
+}
+
+@foreach (var item in pageDatas)
+{
+	<partial name="_ShowLineItem" model="item" />
+}
