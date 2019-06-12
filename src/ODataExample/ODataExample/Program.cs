@@ -20,14 +20,14 @@ namespace ODataExample
 
 		public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
 				WebHost.CreateDefaultBuilder(args)
-						 .ConfigureKestrel(options =>
-						 {
-							 options.ListenLocalhost(5001, listenOptions =>
-							 {
-								 listenOptions.Protocols = HttpProtocols.Http1AndHttp2;
-								 listenOptions.UseHttps();
-							 });
-						 })
+						 //.ConfigureKestrel(options =>
+						 //{
+							// options.ListenLocalhost(5000, listenOptions =>
+							// {
+							//	 listenOptions.Protocols = HttpProtocols.Http1AndHttp2;
+							//	 listenOptions.UseHttps();
+							// });
+						 //})
 						.UseStartup<Startup>();
 	}
 }

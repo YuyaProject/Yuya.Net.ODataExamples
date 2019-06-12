@@ -6,7 +6,14 @@
 	var pageDatas = new List<(string, string, ApiResponseType)>()
 {
 	("All Orders","~/odata/orders" , ApiResponseType.Json),
-	("Order - 1","~/odata/orders(1)", ApiResponseType.Json),
+	("All Orders","~/odata/orders?$expand=orderDetails($compute=unitPrice mul quantity as totalPrice;$select=productId)&$count=true" , ApiResponseType.Json),
+	("All Orders","~/odata/orders?$expand=orderDetails($compute=unitPrice mul quantity as totalPrice;$select=*)&$top=5&$count=true" , ApiResponseType.Json),
+	("Group by","~/odata/orders?$expand=orderDetails($compute=unitPrice mul quantity as totalPrice;$select=*)&$top=5&$count=true" , ApiResponseType.Json),
+	("Order 10248","~/odata/orders(10248)", ApiResponseType.Json),
+	("Order 10248 details","~/odata/orders(10248)/orderdetails?$count=true", ApiResponseType.Json),
+	("Order 10248 details with product","~/odata/orders(10248)/orderdetails?$expand=product&$count=true", ApiResponseType.Json),
+	("Order 10248 details with product and category","~/odata/orders(10248)/orderdetails?$expand=product($expand=category)&$count=true", ApiResponseType.Json),
+	("Order 10248 details with product and category but only id and names","~/odata/orders(10248)/orderdetails?$expand=product($expand=category($select=id,categoryName);$select=id,productName)&$count=true", ApiResponseType.Json),
 };
 
 }
