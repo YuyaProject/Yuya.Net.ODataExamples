@@ -7,45 +7,32 @@ using System.Linq;
 
 namespace ODataExample.Controllers.OData
 {
-	[ODataRoutePrefix("Products")]
-	public class ProductsController : ODataController
-	{
-		private readonly NorthwindDbContext _db;
+    [ODataRoutePrefix("Products")]
+    public class ProductsController : GenericController<Product, int>
+    {
+        public ProductsController(NorthwindDbContext db) : base(db)
+        {
+        }
 
-		public ProductsController(NorthwindDbContext db)
-		{
-			_db = db;
-			_db.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
-		}
+        [EnableQuery]
+        public IQueryable<OrderDetail> GetOrderDetails([FromODataUri] int key)
+        {
+            _db.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
+            return _db.OrderDetails.Where(x => x.ProductId == key);
+        }
 
-		[EnableQuery]
-		public virtual IQueryable<Product> Get()
-		{
-			return _db.Products;
-		}
+        [EnableQuery]
+        public SingleResult<Supplier> GetSupplier([FromODataUri] int key)
+        {
+            _db.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
+            return SingleResult.Create(_db.Products.Where(e => e.Id == key).Select(e => e.Supplier));
+        }
 
-		[EnableQuery]
-		public virtual SingleResult<Product> Get([FromODataUri] int key)
-		{
-			return SingleResult.Create(_db.Products.Where(e => e.Id == key));
-		}
-
-		[EnableQuery]
-		public IQueryable<OrderDetail> GetOrderDetails([FromODataUri] int key)
-		{
-			return _db.OrderDetails.Where(x => x.ProductId == key);
-		}
-
-		[EnableQuery]
-		public SingleResult<Supplier> GetSupplier([FromODataUri] int key)
-		{
-			return SingleResult.Create(_db.Products.Where(e => e.Id == key).Select(e => e.Supplier));
-		}
-
-		[EnableQuery]
-		public SingleResult<Category> GetCategory([FromODataUri] int key)
-		{
-			return SingleResult.Create(_db.Products.Where(e => e.Id == key).Select(e => e.Category));
-		}
-	}
+        [EnableQuery]
+        public SingleResult<Category> GetCategory([FromODataUri] int key)
+        {
+            _db.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
+            return SingleResult.Create(_db.Products.Where(e => e.Id == key).Select(e => e.Category));
+        }
+    }
 }

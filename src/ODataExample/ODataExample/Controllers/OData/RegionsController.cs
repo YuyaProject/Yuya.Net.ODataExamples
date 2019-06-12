@@ -7,33 +7,18 @@ using System.Linq;
 
 namespace ODataExample.Controllers.OData
 {
-	[ODataRoutePrefix("Regions")]
-	public class RegionsController : ODataController
-	{
-		private readonly NorthwindDbContext _db;
+    [ODataRoutePrefix("Regions")]
+    public class RegionsController : GenericController<Region, int>
+    {
+        public RegionsController(NorthwindDbContext db) : base(db)
+        {
+        }
 
-		public RegionsController(NorthwindDbContext db)
-		{
-			_db = db;
-			_db.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
-		}
-
-		[EnableQuery]
-		public virtual IQueryable<Region> Get()
-		{
-			return _db.Regions;
-		}
-
-		[EnableQuery]
-		public virtual SingleResult<Region> Get([FromODataUri] int key)
-		{
-			return SingleResult.Create(_db.Regions.Where(e => e.Id == key));
-		}
-
-		[EnableQuery]
-		public IQueryable<Territory> GetTerritories([FromODataUri] int key)
-		{
-			return _db.Territories.Where(x => x.RegionId == key);
-		}
-	}
+        [EnableQuery]
+        public IQueryable<Territory> GetTerritories([FromODataUri] int key)
+        {
+            _db.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
+            return _db.Territories.Where(x => x.RegionId == key);
+        }
+    }
 }
