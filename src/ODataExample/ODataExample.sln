@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.572
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30413.136
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ODataExample", "ODataExample\ODataExample.csproj", "{99F7B49C-9CDF-454F-882B-8FA3973D3F8E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ODataExample", "ODataExample\ODataExample.csproj", "{99F7B49C-9CDF-454F-882B-8FA3973D3F8E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ODataExample3_1", "ODataExample3_1\ODataExample3_1.csproj", "{88282310-6D5C-4A87-96BD-9CFFB613A4BF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{99F7B49C-9CDF-454F-882B-8FA3973D3F8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{99F7B49C-9CDF-454F-882B-8FA3973D3F8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{99F7B49C-9CDF-454F-882B-8FA3973D3F8E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{88282310-6D5C-4A87-96BD-9CFFB613A4BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88282310-6D5C-4A87-96BD-9CFFB613A4BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88282310-6D5C-4A87-96BD-9CFFB613A4BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88282310-6D5C-4A87-96BD-9CFFB613A4BF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

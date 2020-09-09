@@ -1,0 +1,131 @@
+### metadata
+
+GET http://localhost:5000/odata/$metadata
+
+
+### Categories
+
+GET http://localhost:5000/odata/categories
+
+
+
+
+### Products
+
+GET http://localhost:5000/odata/products
+
+
+
+### Products with count
+
+GET http://localhost:5000/odata/products?$count=true
+
+
+
+### Product with id 1
+
+GET http://localhost:5000/odata/products(1)
+
+
+### Category with id 1
+
+GET http://localhost:5000/odata/categories(1)
+
+###
+
+GET http://localhost:5000/odata/categories(1)/products
+
+
+###
+
+GET http://localhost:5000/odata/categories
+    ?$select=Id,CategoryName
+    &$count=true
+
+
+
+###
+
+GET http://localhost:5000/odata/Orders
+    ?$count=true
+
+
+###
+
+GET http://localhost:5000/odata/Orders
+    ?$top=10
+    &$count=true
+
+
+
+###
+
+GET http://localhost:5000/odata/Orders
+    ?$skip=10
+    &$top=10
+    &$count=true
+
+
+
+###
+
+GET http://localhost:5000/odata/Orders
+    ?$skip=20
+    &$top=10
+    &$count=true
+
+
+
+###
+
+GET http://localhost:5000/odata/Orders
+    ?$orderby=orderDate desc
+    &$skip=10
+    &$top=10
+    &$count=true
+
+
+    
+###
+
+GET http://localhost:5000/odata/Orders
+    ?$filter=employeeId eq 1
+    &$orderby=orderDate desc
+    &$skip=10
+    &$top=10
+    &$count=true
+
+    
+    
+###
+
+GET http://localhost:5000/odata/Orders
+    ?$filter=employeeId eq 1
+    &$orderby=orderDate desc
+    &$expand=orderDetails
+    &$skip=10
+    &$top=10
+    &$count=true
+
+    
+    
+###
+
+GET http://localhost:5000/odata/Orders
+    ?$filter=employeeId eq 1
+    &$orderby=orderDate desc
+    &$expand=orderDetails($expand=product)
+    &$skip=10
+    &$top=10
+    &$count=true
+
+    
+###
+
+GET http://localhost:5000/odata/Orders
+    ?$filter=employeeId eq 1
+    &$orderby=orderDate desc
+    &$expand=orderDetails($expand=product($expand=category))
+    &$skip=10
+    &$top=10
+    &$count=true

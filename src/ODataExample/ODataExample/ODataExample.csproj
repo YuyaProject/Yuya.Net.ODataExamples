@@ -25,11 +25,11 @@
 		<PackageReference Include="NorthwindEFCore" Version="1.0.1" />
 		<PackageReference Include="Swashbuckle.AspNetCore" Version="4.0.1" />
 
-		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.4" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="2.2.4" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.2.4" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.2.6" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="2.2.6" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="2.2.6" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite.Design" Version="1.1.6" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.2.4">
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.2.6">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
