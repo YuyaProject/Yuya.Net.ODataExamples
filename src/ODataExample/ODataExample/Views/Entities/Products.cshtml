@@ -6,7 +6,9 @@
 	var pageDatas = new List<(string, string, ApiResponseType)>()
 {
 	("All Products","~/odata/products" , ApiResponseType.Json),
-	("Product - 1","~/odata/products(1)", ApiResponseType.Json),
+	("Product 1","~/odata/products(1)", ApiResponseType.Json),
+	("Products with category","~/odata/products?$expand=category&$top=5&$count=true", ApiResponseType.Json),
+	("Products with categoryName","~/odata/products?$expand=category($select=id,categoryName)&$top=5&$count=true", ApiResponseType.Json),
 };
 
 }

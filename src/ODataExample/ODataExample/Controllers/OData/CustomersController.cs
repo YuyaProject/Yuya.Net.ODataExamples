@@ -8,26 +8,11 @@ using System.Linq;
 namespace ODataExample.Controllers.OData
 {
 	[ODataRoutePrefix("Customers")]
-	public class CustomersController : ODataController
+	public class CustomersController : GenericController<Customer, string>
 	{
-		private readonly NorthwindDbContext _db;
 
-		public CustomersController(NorthwindDbContext db)
+		public CustomersController(NorthwindDbContext db): base(db)
 		{
-			_db = db;
-			_db.ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
-		}
-
-		[EnableQuery]
-		public virtual IQueryable<Customer> Get()
-		{
-			return _db.Customers;
-		}
-
-		[EnableQuery]
-		public virtual SingleResult<Customer> Get([FromODataUri] string key)
-		{
-			return SingleResult.Create(_db.Customers.Where(e => e.Id == key));
 		}
 
 		[EnableQuery]

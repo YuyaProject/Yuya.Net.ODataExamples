@@ -6,7 +6,17 @@
 	var pageDatas = new List<(string, string, ApiResponseType)>()
 {
 	("All Categories","~/odata/categories" , ApiResponseType.Json),
-	("Category - 1","~/odata/categories(1)", ApiResponseType.Json),
+	("All Categories count","~/odata/categories/$count" , ApiResponseType.Json),
+	("All Categories with count","~/odata/categories?$count=true" , ApiResponseType.Json),
+	("Category 1","~/odata/categories(1)", ApiResponseType.Json),
+	("Category 1 Products","~/odata/categories(1)/products", ApiResponseType.Json),
+	("Category 1 Products with count","~/odata/categories(1)/products?$count=true", ApiResponseType.Json),
+	("All Categories between 4 and 6","~/odata/categories?$skip=3&$top=3&$count=true" , ApiResponseType.Json),
+	("Category 1 Products between 6 and 10 with count","~/odata/categories(1)/products?$skip=5&$top=5&$count=true", ApiResponseType.Json),
+	("Categories with Products","~/odata/categories?$expand=products&$top=5&$select=id,categoryName&$count=true", ApiResponseType.Json),
+	("Categories with ProductNames","~/odata/categories?$expand=products($select=id,productName)&$top=5&$select=id,categoryName&$count=true", ApiResponseType.Json),
+	("Categories with ProductNames with descanding order","~/odata/categories?$expand=products($select=id,productName;$orderby=productName desc)&$top=5&$select=id,categoryName&$count=true", ApiResponseType.Json),
+	("Categories with ProductNames with descanding order and supplierName","~/odata/categories?$expand=products($expand=supplier($select=companyName);$select=id,productName;$orderby=productName desc)&$top=5&$select=id,categoryName&$count=true", ApiResponseType.Json),
 };
 
 }
