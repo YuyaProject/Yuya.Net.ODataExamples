@@ -1,2 +1,2 @@
-# Yuya.Net.ODataExamples
+# OData-Northwind-Example
 
